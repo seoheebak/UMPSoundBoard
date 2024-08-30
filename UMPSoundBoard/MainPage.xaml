@@ -10,8 +10,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="6.135"/>
-            <RowDefinition Height="6.865"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <RelativePanel>
@@ -30,8 +29,38 @@
                     Height="45"
                     Width="45"
                     />
-
         </RelativePanel>
+
+        <SplitView Grid.Row="1"
+                   Name="ContentSplitview"
+                   DisplayMode="CompactOverlay"
+                   CompactPaneLength="45"
+                   OpenPaneLength="200"
+                   >
+            <SplitView.Pane>
+                <ListView Name="MenuItemListView"
+                          IsItemClickEnabled="True">
+                </ListView>
+            </SplitView.Pane>
+
+            <SplitView.Content>
+                <Grid Name="ContentGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Name="CategoryTextBlock"
+                               Text="All Sound"
+                               FontSize="24" />
+                    <GridView Grid.Row="1"
+                              Name="SoundGridView"
+                              IsItemClickEnabled="True" >
+                        
+                    </GridView>
+                </Grid>
+            </SplitView.Content>
+            
+        </SplitView>
 
     </Grid>
 </Page>
