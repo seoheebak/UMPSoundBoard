@@ -55,6 +55,7 @@ namespace UMPSoundBoard
                 },
 
             };
+            BackButton.Visibility = Visibility.Collapsed;
 
         }
 
@@ -63,5 +64,26 @@ namespace UMPSoundBoard
             ContentSplitview.IsPaneOpen = !ContentSplitview.IsPaneOpen;
         }
 
+        private void MenuItemListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var menuItem = (MenuItem)e.ClickedItem;
+            SoundManager.GetSoundsByCategory(sounds, menuItem.Category);
+            CategoryTextBlock.Text = menuItem.Category.ToString();
+            BackButton.Visibility = Visibility.Visible;
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            SoundManager.GetAllSounds(sounds);
+            CategoryTextBlock.Text = "All Sounds";
+            BackButton.Visibility = Visibility.Collapsed;
+            MenuItemListView.SelectedItem = null;
+        }
+
+        private void SoundGridView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var sound = (Sound)e.ClickedItem;
+            SoundMedia.Source = new Uri(this.BaseUri, sound.AudioFile);
+        }
     }
 }

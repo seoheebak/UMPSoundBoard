@@ -30,6 +30,7 @@
                     Content="&#xE0A6;"
                     Height="45"
                     Width="45"
+                    Click="BackButton_Click"
                     />
         </RelativePanel>
 
@@ -42,7 +43,9 @@
             <SplitView.Pane>
                 <ListView Name="MenuItemListView"
                           IsItemClickEnabled="True"
-                          ItemsSource="{x:Bind menuItems}">
+                          ItemsSource="{x:Bind menuItems}"
+                          ItemClick="MenuItemListView_ItemClick"
+                          >
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="data:MenuItem">
                             <StackPanel Orientation="Horizontal" Margin="0,10,0,10">
@@ -56,7 +59,7 @@
             </SplitView.Pane>
 
             <SplitView.Content>
-                <Grid Name="ContentGrid">
+                <Grid Name="ContentGrid" Margin="20,0,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
@@ -67,7 +70,9 @@
                     <GridView Grid.Row="1"
                               Name="SoundGridView"
                               IsItemClickEnabled="True"
-                              ItemsSource="{x:Bind sounds}">
+                              ItemsSource="{x:Bind sounds}"
+                              ItemClick="SoundGridView_ItemClick"
+                              >
                         <GridView.ItemTemplate>
                             <DataTemplate x:DataType="data:Sound">
                                 <Image Name="SoundImage" Height="112" Width="101" Source="{x:Bind ImageFile}" />
@@ -75,10 +80,13 @@
                         </GridView.ItemTemplate>
                         
                     </GridView>
+                    <MediaElement Name="SoundMedia" AutoPlay="True" />
                 </Grid>
+                
             </SplitView.Content>
             
         </SplitView>
+        <MediaElement Height="100" Grid.RowSpan="2" Width="100"/>
 
     </Grid>
 </Page>
